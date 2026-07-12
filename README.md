@@ -205,8 +205,9 @@ The following tests demonstrate the network's functionality and security policie
 *Verifying OSPF neighbor adjacencies and the dynamic routing table.*
 * **OSPF Neighbors:**
 <img width="1252" height="427" alt="image" src="https://github.com/user-attachments/assets/13f2c6c0-26a6-4c09-afad-c6e317b58894" />
+
 * **OSPF Routes:**
-<img width="532" height="706" alt="image" src="https://github.com/user-attachments/assets/0813a138-d001-4cbf-853c-414190bb17fa" />
+* <img width="532" height="706" alt="image" src="https://github.com/user-attachments/assets/0813a138-d001-4cbf-853c-414190bb17fa" />
 
 
 **3. Gateway Redundancy (HSRP)**
