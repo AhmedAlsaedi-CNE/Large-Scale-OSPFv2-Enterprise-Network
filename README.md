@@ -4,7 +4,7 @@ This repository contains the design, documentation, and configuration files for 
 
 ---
 
-## 🗺️ Network Topology Overview
+##  Network Topology Overview
 Below is the architectural blueprint of the enterprise infrastructure, highlighting the core ring, distributed user blocks, and the isolated server farm:
 
 <img width="866" height="722" alt="image" src="https://github.com/user-attachments/assets/dce14192-1c55-4b6f-a0fe-e9331423841f" />
@@ -32,7 +32,7 @@ Below is the architectural blueprint of the enterprise infrastructure, highlight
 *   **Inter-VLAN Routing (SVI):** Enabled on distribution layers to manage fast routing between distinct VLAN blocks and the upper server farm.
 
 ---
-## 📊 Comprehensive IP Addressing & Mapping Reference
+##  Comprehensive IP Addressing & Mapping Reference
 
 ### Table 1: Point-to-Point and IP addressing between R1 and R2
 | Connected | Port | IP/Mask |
@@ -87,7 +87,7 @@ Below is the architectural blueprint of the enterprise infrastructure, highlight
 
 ---
 
-### 🔹 Layer 3 Distribution Blocks
+###  Layer 3 Distribution Blocks
 
 #### VLAN 10 Block (MUL1 & MUL2 Pair)
 | Connected | Port | IP/Mask |
@@ -165,7 +165,7 @@ Below is the architectural blueprint of the enterprise infrastructure, highlight
 
 ---
 
-### 🔹 End Devices & Datacenter Server Addressing Table
+###  End Devices & Datacenter Server Addressing Table
 | Device Name | Connected Switch | VLAN | IP Address | Subnet Mask | Default Gateway |
 | :--- | :---: | :---: | :---: | :---: | :---: |
 | **PC1** | Sw1 | VLAN 10 | 10.0.10.11 | 255.255.255.0 | 10.0.10.1 (HSRP) |
@@ -186,7 +186,7 @@ Below is the architectural blueprint of the enterprise infrastructure, highlight
 
 ---
 
-## 🚀 Verification & Deliverables Status
+##  Verification & Deliverables Status
 - [x] Comprehensive /30 Core Network Subnet Planning.
 - [x] LACP Multi-chassis EtherChannel configuration.
 - [x] Multi-Area OSPFv2 full neighbor convergence verified via central core node R9.
