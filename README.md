@@ -194,18 +194,17 @@ Below is the architectural blueprint of the enterprise infrastructure, highlight
 
 ---
 
-##  How to Download & Run the Topology
+## 🎮 How to Download & Run the Topology
 
 Want to test and explore this network live? Follow these steps to run the simulation on your local machine:
 
 ### Prerequisites
-* **GNS3** installed (Latest version recommended)
-* Recommended Cisco IOS Router Image configured in your GNS3 (matching the node types used in the architecture).
+* **GNS3** installed (Latest version recommended).
+* **Cisco IOS Image:** Ensure your GNS3 is configured with a compatible router image (e.g., c7200).
 
 ### Execution Steps
-1. **Clone or Download this Repository:**
-   * Click the green **Code** button at the top of this page, then click **Download ZIP** (or run `git clone` in your terminal).
-2. **Extract the Files:** Extract the downloaded ZIP archive to your local directory.
-3. **Open in GNS3:** 
-   * Launch GNS3, go to **File > Open Project**, and select the project file provided in this repository.
-4. **Boot & Verify:** Start all nodes, open your preferred console client (SecureCRT, Putty, or SolarPutty), and begin exploring the dynamic routing tables, DHCP server leases, ACL filters, or executing end-to-end `ping` tests!
+1. **Download the Project File:**
+   * ⬇️ **[Uploading Project_1.gns3…]()**
+2. **Import into GNS3:** 
+   * Launch GNS3, go to **File > Import portable project**, and select the downloaded `.gns3project` file.
+3. **Boot & Verify:** Start all nodes, open your console, and begin exploring the dynamic routing tables, DHCP server leases, ACL filters, or executing end-to-end `ping` tests!
