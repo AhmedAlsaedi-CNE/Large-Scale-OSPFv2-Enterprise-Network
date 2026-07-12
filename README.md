@@ -7,8 +7,7 @@ This repository contains the design, documentation, and configuration files for 
 ##  Network Topology Overview
 Below is the architectural blueprint of the enterprise infrastructure, highlighting the core ring, distributed user blocks, and the isolated server farm:
 
-<img width="866" height="722" alt="image" src="https://github.com/user-attachments/assets/dce14192-1c55-4b6f-a0fe-e9331423841f" />
-
+<img width="866" height="722" alt="image" src="https://github.com/user-attachments/assets/05353617-1fb3-45d2-83b3-d1a0fbcda702" />
 
 
 ---
@@ -20,7 +19,15 @@ Below is the architectural blueprint of the enterprise infrastructure, highlight
 *   **Distribution Layer:** Implements intelligent routing policies and boundary points using high-performance Multi-Layer Switches (MUL1 to MUL8).
 *   **Access Layer:** Attaches end-user VPCS devices and servers directly to the network through dedicated Layer 2 access switches, segmenting traffic efficiently.
 
-### 2. Implemented Protocols & Technologies
+### 2. Network Security & Dynamic Addressing Configuration
+*   **Data Center Traffic Enforcement (Extended ACL):** Hardened security on the Spine-Leaf infrastructure (MUL7 & MUL8) by deploying an Extended IP Access Control List (`DATA_CENTER_SECURITY`). This ensures strict, deterministic traffic matching:
+    *   `VLAN 10` blocks (`10.0.0.0/16`) are permitted exclusively to `Server Net 10.3.10.0/24`.
+    *   `VLAN 20` blocks (`10.1.0.0/16`) are permitted exclusively to `Server Net 10.3.20.0/24`.
+    *   `VLAN 30` blocks (`10.2.0.0/16`) are permitted exclusively to `Server Net 10.3.30.0/24`.
+    *   All unmapped cross-traffic is dropped implicitly to isolate server environments.
+*   **Centralized Dynamic Addressing (DHCP Server):** Dedicated DHCP IP pools are configured locally on every branch router (R1 through R8, excluding central transit node R9) to operate as the default DHCP Server, dynamically provisioning network IP parameters for each corresponding local area network (LAN).
+
+### 3. Core Protocols & Technologies
 *   **Dynamic Routing (OSPFv2):** Configured as the core IGP spanning `Area 0` across all 9 routers and Multilayer switches to guarantee highly scalable dynamic route advertisement and rapid convergence.
 *   **First Hop Redundancy (HSRP):** Configured on the Multi-Layer distribution pairs to provide high-availability default virtual gateways for seamless network failover.
 *   **Link Aggregation (LACP / EtherChannel):** Active Port-Channels configured between interconnected distribution switches to scale uplinks and eliminate potential single points of failure.
@@ -32,7 +39,8 @@ Below is the architectural blueprint of the enterprise infrastructure, highlight
 *   **Inter-VLAN Routing (SVI):** Enabled on distribution layers to manage fast routing between distinct VLAN blocks and the upper server farm.
 
 ---
-##  Comprehensive IP Addressing & Mapping Reference
+
+## 📊 Comprehensive IP Addressing & Mapping Reference
 
 ### Table 1: Point-to-Point and IP addressing between R1 and R2
 | Connected | Port | IP/Mask |
@@ -87,7 +95,7 @@ Below is the architectural blueprint of the enterprise infrastructure, highlight
 
 ---
 
-###  Layer 3 Distribution Blocks
+### 🔹 Layer 3 Distribution Blocks
 
 #### VLAN 10 Block (MUL1 & MUL2 Pair)
 | Connected | Port | IP/Mask |
@@ -165,30 +173,39 @@ Below is the architectural blueprint of the enterprise infrastructure, highlight
 
 ---
 
-###  End Devices & Datacenter Server Addressing Table
-| Device Name | Connected Switch | VLAN | IP Address | Subnet Mask | Default Gateway |
+### 🔹 End Devices & Datacenter Server Addressing Table
+| Device Name | Connected Switch | VLAN / Subnet Type | IP Address | Subnet Mask | Default Gateway Protocol / Logic |
 | :--- | :---: | :---: | :---: | :---: | :---: |
-| **PC1** | Sw1 | VLAN 10 | 10.0.10.11 | 255.255.255.0 | 10.0.10.1 (HSRP) |
-| **PC2** | Sw1 | VLAN 10 | 10.0.10.12 | 255.255.255.0 | 10.0.10.1 (HSRP) |
-| **PC3** | Sw2 | VLAN 10 | 10.0.10.13 | 255.255.255.0 | 10.0.10.1 (HSRP) |
-| **PC4** | Sw2 | VLAN 10 | 10.0.10.14 | 255.255.255.0 | 10.0.10.1 (HSRP) |
-| **PC5** | Sw3 | VLAN 20 | 10.1.10.11 | 255.255.255.0 | 10.1.10.1 (HSRP) |
-| **PC6** | Sw3 | VLAN 20 | 10.1.10.12 | 255.255.255.0 | 10.1.10.1 (HSRP) |
-| **PC7** | Sw4 | VLAN 20 | 10.1.10.13 | 255.255.255.0 | 10.1.10.1 (HSRP) |
-| **PC8** | Sw4 | VLAN 20 | 10.1.10.14 | 255.255.255.0 | 10.1.10.1 (HSRP) |
-| **PC9** | Sw5 | VLAN 30 | 10.2.10.11 | 255.255.255.0 | 10.2.10.1 (HSRP) |
-| **PC11** | Sw5 | VLAN 30 | 10.2.10.12 | 255.255.255.0 | 10.2.10.1 (HSRP) |
-| **PC10** | Sw6 | VLAN 30 | 10.2.10.13 | 255.255.255.0 | 10.2.10.1 (HSRP) |
-| **PC12** | Sw6 | VLAN 30 | 10.2.10.14 | 255.255.255.0 | 10.2.10.1 (HSRP) |
-| **Server10** | SW-VLAN10 | Server Net | 10.3.10.10 | 255.255.255.255 | 10.3.10.2 / 10.3.10.3 |
-| **Server20** | SW-VLAN20 | Server Net | 10.3.20.10 | 255.255.255.255 | 10.3.20.2 / 10.3.20.3 |
-| **Server30** | SW-VLAN30 | Server Net | 10.3.30.10 | 255.255.255.255 | 10.3.30.2 / 10.3.30.3 |
+| **PC1** | Sw1 | VLAN 10 (DHCP Assigned) | 10.0.10.11 | 255.255.255.0 | 10.0.10.1 (HSRP Virtual IP) |
+| **PC2** | Sw1 | VLAN 10 (DHCP Assigned) | 10.0.10.12 | 255.255.255.0 | 10.0.10.1 (HSRP Virtual IP) |
+| **PC3** | Sw2 | VLAN 10 (DHCP Assigned) | 10.0.10.13 | 255.255.255.0 | 10.0.10.1 (HSRP Virtual IP) |
+| **PC4** | Sw2 | VLAN 10 (DHCP Assigned) | 10.0.10.14 | 255.255.255.0 | 10.0.10.1 (HSRP Virtual IP) |
+| **PC5** | Sw3 | VLAN 20 (DHCP Assigned) | 10.1.10.11 | 255.255.255.0 | 10.1.10.1 (HSRP Virtual IP) |
+| **PC6** | Sw3 | VLAN 20 (DHCP Assigned) | 10.1.10.12 | 255.255.255.0 | 10.1.10.1 (HSRP Virtual IP) |
+| **PC7** | Sw4 | VLAN 20 (DHCP Assigned) | 10.1.10.13 | 255.255.255.0 | 10.1.10.1 (HSRP Virtual IP) |
+| **PC8** | Sw4 | VLAN 20 (DHCP Assigned) | 10.1.10.14 | 255.255.255.0 | 10.1.10.1 (HSRP Virtual IP) |
+| **PC9** | Sw5 | VLAN 30 (DHCP Assigned) | 10.2.10.11 | 255.255.255.0 | 10.2.10.1 (HSRP Virtual IP) |
+| **PC11** | Sw5 | VLAN 30 (DHCP Assigned) | 10.2.10.12 | 255.255.255.0 | 10.2.10.1 (HSRP Virtual IP) |
+| **PC10** | Sw6 | VLAN 30 (DHCP Assigned) | 10.2.10.13 | 255.255.255.0 | 10.2.10.1 (HSRP Virtual IP) |
+| **PC12** | Sw6 | VLAN 30 (DHCP Assigned) | 10.2.10.14 | 255.255.255.0 | 10.2.10.1 (HSRP Virtual IP) |
+| **Server10** | SW-VLAN10 | Static Server Net | 10.3.10.10 | 255.255.255.255 | 10.3.10.2 / 10.3.10.3 (Secured via ACL) |
+| **Server20** | SW-VLAN20 | Static Server Net | 10.3.20.10 | 255.255.255.255 | 10.3.20.2 / 10.3.20.3 (Secured via ACL) |
+| **Server30** | SW-VLAN30 | Static Server Net | 10.3.30.10 | 255.255.255.255 | 10.3.30.2 / 10.3.30.3 (Secured via ACL) |
 
 ---
 
-##  Verification & Deliverables Status
-- [x] Comprehensive /30 Core Network Subnet Planning.
-- [x] LACP Multi-chassis EtherChannel configuration.
-- [x] Multi-Area OSPFv2 full neighbor convergence verified via central core node R9.
-- [x] Dynamic HSRP high-availability routing testing.
-- [x] End-to-end full connectivity ping tests verified from all local PC nodes to target Data Center servers.
+##  How to Download & Run the Topology
+
+Want to test and explore this network live? Follow these steps to run the simulation on your local machine:
+
+### Prerequisites
+* **GNS3** installed (Latest version recommended)
+* Recommended Cisco IOS Router Image configured in your GNS3 (matching the node types used in the architecture).
+
+### Execution Steps
+1. **Clone or Download this Repository:**
+   * Click the green **Code** button at the top of this page, then click **Download ZIP** (or run `git clone` in your terminal).
+2. **Extract the Files:** Extract the downloaded ZIP archive to your local directory.
+3. **Open in GNS3:** 
+   * Launch GNS3, go to **File > Open Project**, and select the project file provided in this repository.
+4. **Boot & Verify:** Start all nodes, open your preferred console client (SecureCRT, Putty, or SolarPutty), and begin exploring the dynamic routing tables, DHCP server leases, ACL filters, or executing end-to-end `ping` tests!
