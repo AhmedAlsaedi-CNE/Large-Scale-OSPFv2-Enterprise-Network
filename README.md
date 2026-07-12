@@ -194,13 +194,17 @@ Below is the architectural blueprint of the enterprise infrastructure, highlight
 
 ---
 
-## 🎮 How to Download & Run the Topology
+##  How to Download & Run the Topology
 
 Want to test and explore this network live? Follow these steps to run the simulation on your local machine:
 
 ### Prerequisites
 * **GNS3** installed (Latest version recommended).
-* **Cisco IOS Image:** Ensure your GNS3 is configured with a compatible router image (e.g., c7200).
+* **To run this network, you need these appliances configured in your GNS3:
+
+Routers: Cisco c7200. Please ensure you have your own valid Cisco IOS image configured for this platform.
+
+Multilayer & L2 Switch: QEMU VM. Please ensure you have the virtioa.qcow2 disk image imported as a QEMU template.
 
 ### Execution Steps
 1. **Download the Project File:**
