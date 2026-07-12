@@ -7,7 +7,8 @@ This repository contains the design, documentation, and configuration files for 
 ## 🗺️ Network Topology Overview
 Below is the architectural blueprint of the enterprise infrastructure, highlighting the core ring, distributed user blocks, and the isolated server farm:
 
-<img width="867" height="727" alt="image" src="https://github.com/user-attachments/assets/2e8d6018-9c7d-476b-a373-898518100066" />
+<img width="866" height="722" alt="image" src="https://github.com/user-attachments/assets/dce14192-1c55-4b6f-a0fe-e9331423841f" />
+
 
 
 ---
