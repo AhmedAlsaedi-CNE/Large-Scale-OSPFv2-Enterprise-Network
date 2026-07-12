@@ -196,7 +196,7 @@ Below is the architectural blueprint of the enterprise infrastructure, highlight
 ### Verification & Testing
 The following tests demonstrate the network's functionality and security policies:
 
-**1. End-to-End Connectivity**
+## **1. End-to-End Connectivity**
 *Testing inter-VLAN routing by pinging and tracing from PC1 (VLAN 10) to PC8 (VLAN 20).*
 <img width="1288" height="576" alt="image" src="https://github.com/user-attachments/assets/369fb569-05d8-41e2-a44f-392b4f56f743" />
 
