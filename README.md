@@ -193,7 +193,38 @@ Below is the architectural blueprint of the enterprise infrastructure, highlight
 | **Server30** | SW-VLAN30 | Static Server Net | 10.3.30.10 | 255.255.255.255 | 10.3.30.2 / 10.3.30.3 (Secured via ACL) |
 
 ---
+### Verification & Testing
+The following tests demonstrate the network's functionality and security policies:
 
+**1. End-to-End Connectivity**
+*Testing inter-VLAN routing by pinging and tracing from PC1 (VLAN 10) to PC5 (VLAN 20).*
+![Ping/Trace Test](images/connectivity-test.png)
+
+**2. Dynamic Routing (OSPFv2)**
+*Verifying OSPF neighbor adjacencies and the dynamic routing table.*
+![OSPF Neighbors](images/ospf-neighbors.png)
+
+**3. Gateway Redundancy (HSRP)**
+*Confirming HSRP status for VLAN 10 to ensure high availability.*
+![HSRP Status](images/hsrp-status.png)
+
+**4. DHCP Service**
+*Validating IP address assignment.*
+* **Server/Switch Binding:** `show ip dhcp binding`
+ <img width="1257" height="366" alt="image" src="https://github.com/user-attachments/assets/b669c981-22d5-429c-8b4a-c8f170d0463a" />
+
+* **Client Configuration:** PC (VLAN 10) IP request success.
+ <img width="568" height="152" alt="image" src="https://github.com/user-attachments/assets/445a3e8f-a263-4332-990a-883087611daf" />
+
+
+
+**5. ACL Security Testing (Spine-Leaf Layer)**
+*Verifying security policies enforced at the Spine-Leaf layer to control traffic between segments.*
+* **Permitted Access (PC1 VLAN 10 to Server 10):**
+  ![ACL Permit](images/acl-permit.png)
+* **Denied Access (PC1 VLAN 10 to Server 20):**
+  ![ACL Deny](images/acl-deny.png)
+  
 ##  How to Download & Run the Topology
 
 Want to test and explore this network live? Follow these steps to run the simulation on your local machine:
