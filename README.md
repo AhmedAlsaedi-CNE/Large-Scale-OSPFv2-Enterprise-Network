@@ -204,7 +204,7 @@ Want to test and explore this network live? Follow these steps to run the simula
 
 ### Execution Steps
 1. **Download the Project File:**
-   * ⬇️ **[Uploading Project_1.gns3…]()**
+   * ⬇️ ** [Large-Scale Three-Tier Hybrid Enterprise Network.zip](https://github.com/user-attachments/files/29941358/Large-Scale.Three-Tier.Hybrid.Enterprise.Network.zip) **
 2. **Import into GNS3:** 
    * Launch GNS3, go to **File > Import portable project**, and select the downloaded `.gns3project` file.
 3. **Boot & Verify:** Start all nodes, open your console, and begin exploring the dynamic routing tables, DHCP server leases, ACL filters, or executing end-to-end `ping` tests!
