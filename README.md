@@ -200,11 +200,11 @@ Want to test and explore this network live? Follow these steps to run the simula
 
 ### Prerequisites
 * **GNS3** installed (Latest version recommended).
-* **To run this network, you need these appliances configured in your GNS3:
+* To run this network, you need these appliances configured in your GNS3:
 
-Routers: Cisco c7200. Please ensure you have your own valid Cisco IOS image configured for this platform.
+**Routers: Cisco c7200. Please ensure you have your own valid Cisco IOS image configured for this platform.**
 
-Multilayer & L2 Switch: QEMU VM. Please ensure you have the virtioa.qcow2 disk image imported as a QEMU template.
+**Multilayer & L2 Switch: QEMU VM. Please ensure you have the virtioa.qcow2 disk image imported as a QEMU template.**
 
 ### Execution Steps
 1. **Download the Project File:**
