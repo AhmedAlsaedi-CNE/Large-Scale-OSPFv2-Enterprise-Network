@@ -197,16 +197,25 @@ Below is the architectural blueprint of the enterprise infrastructure, highlight
 The following tests demonstrate the network's functionality and security policies:
 
 **1. End-to-End Connectivity**
-*Testing inter-VLAN routing by pinging and tracing from PC1 (VLAN 10) to PC5 (VLAN 20).*
-![Ping/Trace Test](images/connectivity-test.png)
+*Testing inter-VLAN routing by pinging and tracing from PC1 (VLAN 10) to PC8 (VLAN 20).*
+<img width="1288" height="576" alt="image" src="https://github.com/user-attachments/assets/369fb569-05d8-41e2-a44f-392b4f56f743" />
+
 
 **2. Dynamic Routing (OSPFv2)**
 *Verifying OSPF neighbor adjacencies and the dynamic routing table.*
-![OSPF Neighbors](images/ospf-neighbors.png)
+* **OSPF Neighbors:**
+<img width="1252" height="427" alt="image" src="https://github.com/user-attachments/assets/13f2c6c0-26a6-4c09-afad-c6e317b58894" />
+* **OSPF Routes:**
+<img width="532" height="706" alt="image" src="https://github.com/user-attachments/assets/0813a138-d001-4cbf-853c-414190bb17fa" />
+
 
 **3. Gateway Redundancy (HSRP)**
-*Confirming HSRP status for VLAN 10 to ensure high availability.*
-![HSRP Status](images/hsrp-status.png)
+*Confirming HSRP status for VLAN 10 to ensure high availability and automatic failover.*
+
+* **HSRP Status:**
+  *This output confirms the device is in 'Standby' state, with the active gateway identified as 10.0.10.2 and the virtual IP (VIP) successfully configured.*
+  <img width="1183" height="182" alt="image" src="https://github.com/user-attachments/assets/f357d1f6-a75b-4e39-be5b-19d50813dc87" />
+
 
 **4. DHCP Service**
 *Validating IP address assignment.*
@@ -220,10 +229,16 @@ The following tests demonstrate the network's functionality and security policie
 
 **5. ACL Security Testing (Spine-Leaf Layer)**
 *Verifying security policies enforced at the Spine-Leaf layer to control traffic between segments.*
+
 * **Permitted Access (PC1 VLAN 10 to Server 10):**
-  ![ACL Permit](images/acl-permit.png)
+  *Connectivity is successfully established to the permitted server.*
+ <img width="1797" height="577" alt="image" src="https://github.com/user-attachments/assets/b30edc19-74cf-4f2c-91b6-2f6a7c658232" />
+
+
 * **Denied Access (PC1 VLAN 10 to Server 20):**
-  ![ACL Deny](images/acl-deny.png)
+  *Access is actively rejected by the ACL configuration. The 'Communication administratively prohibited' message confirms the security policy is correctly applied and dropping unauthorized traffic.*
+<img width="1797" height="577" alt="image" src="https://github.com/user-attachments/assets/d7315cc6-6746-4741-b1ac-828feb1cf692" />
+
   
 ##  How to Download & Run the Topology
 
