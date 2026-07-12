@@ -201,7 +201,7 @@ The following tests demonstrate the network's functionality and security policie
 <img width="1288" height="576" alt="image" src="https://github.com/user-attachments/assets/369fb569-05d8-41e2-a44f-392b4f56f743" />
 
 
-**2. Dynamic Routing (OSPFv2)**
+## **2. Dynamic Routing (OSPFv2)**
 *Verifying OSPF neighbor adjacencies and the dynamic routing table.*
 * **OSPF Neighbors:**
 <img width="1252" height="427" alt="image" src="https://github.com/user-attachments/assets/13f2c6c0-26a6-4c09-afad-c6e317b58894" />
@@ -210,7 +210,7 @@ The following tests demonstrate the network's functionality and security policie
 * <img width="532" height="706" alt="image" src="https://github.com/user-attachments/assets/0813a138-d001-4cbf-853c-414190bb17fa" />
 
 
-**3. Gateway Redundancy (HSRP)**
+## **3. Gateway Redundancy (HSRP)**
 *Confirming HSRP status for VLAN 10 to ensure high availability and automatic failover.*
 
 * **HSRP Status:**
@@ -218,7 +218,7 @@ The following tests demonstrate the network's functionality and security policie
   <img width="1183" height="182" alt="image" src="https://github.com/user-attachments/assets/f357d1f6-a75b-4e39-be5b-19d50813dc87" />
 
 
-**4. DHCP Service**
+## **4. DHCP Service**
 *Validating IP address assignment.*
 * **Server/Switch Binding:** `show ip dhcp binding`
  <img width="1257" height="366" alt="image" src="https://github.com/user-attachments/assets/b669c981-22d5-429c-8b4a-c8f170d0463a" />
@@ -228,7 +228,7 @@ The following tests demonstrate the network's functionality and security policie
 
 
 
-**5. ACL Security Testing (Spine-Leaf Layer)**
+## **5. ACL Security Testing (Spine-Leaf Layer)**
 *Verifying security policies enforced at the Spine-Leaf layer to control traffic between segments.*
 
 * **Permitted Access (PC1 VLAN 10 to Server 10):**
